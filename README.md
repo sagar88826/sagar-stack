@@ -1,84 +1,96 @@
-# Turborepo starter
+````markdown
+# Sagar Stack
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern full-stack TypeScript monorepo template built with Turborepo.
 
-## Using this example
+## 🚀 Tech Stack
 
-Run the following command:
+### Frontend (Client)
 
-```sh
-npx create-turbo@latest
-```
+- **React 18** with TypeScript
+- **Vite** for blazing-fast development
+- **tRPC** for end-to-end typesafe APIs
+- **TanStack Query** (React Query) for data fetching and caching
+- **TanStack Table** for powerful and flexible table management
+- **React Helmet Async** for managing document head metadata (title, meta tags, etc.)
 
-## What's inside?
+### Backend (Server)
 
-This Turborepo includes the following packages/apps:
+- **Express.js** with TypeScript
+- **tRPC** for type-safe API endpoints
+- **Helmet** for setting security HTTP headers
+- **Compression** for Gzip compression of responses
+- **CORS** with configurable origins for cross-origin resource sharing
+- **Rate Limiting** to protect against abuse and excessive requests
+- **Cookie Parser** for parsing cookies in incoming requests
+- **Morgan** for HTTP request logging
 
-### Apps and Packages
+### Development & Build Tools
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- **Turborepo** for monorepo management, enabling efficient builds and caching
+- **pnpm** as the package manager for fast and efficient dependency management
+- **TypeScript** for static typing and improved code maintainability
+- **ESLint** for code linting and enforcing coding standards
+- **Prettier** for code formatting and consistent style
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🚦 Getting Started
 
-### Utilities
+1. Clone the repository:
 
-This Turborepo has some additional tools already setup for you:
+2. Install dependencies:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+   ```bash
+   pnpm install
+   ```
 
-### Build
+3. Start development servers:
 
-To build all apps and packages, run the following command:
+   ```bash
+   pnpm dev
+   ```
 
-```
-cd my-turborepo
+   This command will likely start both the client and server in development mode, thanks to Turborepo.
+
+## 🔧 Environment Variables
+
+### Client (`.env`)
+
+- `VITE_API_URL`: URL for the tRPC API (e.g., `http://localhost:8173/trpc`)
+
+### Server (`.env`)
+
+- `PORT`: Server port (default: `8173`)
+- `CLIENT_URL`: Comma-separated list of allowed CORS origins (e.g., `http://localhost:3000`)
+- `NODE_ENV`: Environment mode (`development` or `production`)
+
+## 🛠️ Development Features
+
+- Full TypeScript support across the entire stack
+- Hot Module Replacement (HMR) for fast and efficient development
+- End-to-end type safety with tRPC, ensuring type consistency between frontend and backend
+- Automatic API request batching with tRPC for optimized performance
+- Centralized error handling on the server and client
+- Production-ready security headers implemented with Helmet
+- API rate limiting to prevent abuse
+- Gzip compression enabled for improved performance
+- Development proxy configuration (likely handled by Vite)
+
+## 📦 Production Build
+
+Build all applications:
+
+```bash
 pnpm build
 ```
 
-### Develop
+This command will use Turborepo to efficiently build both the client and server applications for production.
 
-To develop all apps and packages, run the following command:
+## 🔒 Security Features
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- Helmet.js security headers to protect against common web vulnerabilities
+- Rate limiting to prevent abuse and protect against denial-of-service attacks
+- CORS protection to restrict access to the API from unauthorized origins
+- Secure cookie handling (ensure appropriate settings for cookies)
+- Request compression to reduce bandwidth usage and improve performance
+- Robust error handling middleware to prevent information leakage
+````
