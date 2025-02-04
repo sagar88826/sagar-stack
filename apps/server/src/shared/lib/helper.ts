@@ -1,8 +1,15 @@
+import { Express } from "express";
+import expressRouter from "../express/routes/init.js";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { Express } from "express-serve-static-core";
-import { appRouter } from "../module/tRPC/routes/index.js";
-import { createContext } from "../module/tRPC/context.js";
-import expressRouter from "../module/express/routes/index.js";
+import { appRouter } from "../tRPC/route.js";
+import { createContext } from "../tRPC/context.js";
+
+export const initiateExpressRoutesInExpressMiddleware = (app: Express) => {
+  app.use("/initialise", (_req, res) => {
+    res.send("Hello from Express d");
+  });
+  app.use("/api/v1", expressRouter);
+};
 
 export const initiateTRPCRoutesInExpressMiddlware = (app: Express) => {
   app.use(
@@ -23,11 +30,4 @@ export const initiateTRPCRoutesInExpressMiddlware = (app: Express) => {
       }),
     })
   );
-};
-
-export const initiateExpressRoutesInExpressMiddleware = (app: Express) => {
-  app.use("/initialise", (_req, res) => {
-    res.send("Hello from Express d");
-  });
-  app.use("/api/v1", expressRouter);
 };

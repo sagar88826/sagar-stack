@@ -1,4 +1,4 @@
-import { t } from "../init.js";
+import { t } from "./init.js";
 
 export const appRouter = t.router({
   welcome: t.procedure.query(() => {

@@ -8,17 +8,13 @@ import { createServer } from "http";
 import morgan from "morgan";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { initiateExpressRoutesInExpressMiddleware, initiateTRPCRoutesInExpressMiddlware } from "./lib/helper.js";
-import dotenv from "dotenv";
-import notFoundHandler from "./module/express/middleware/not-found.js";
-import errorHandler from "./module/express/middleware/error-handler.js";
+import notFoundHandler from "./middlewares/express/not-found.js";
+import errorHandler from "./middlewares/express/error-handler.js";
+import { env } from "./configs/env.js";
+import { initiateExpressRoutesInExpressMiddleware, initiateTRPCRoutesInExpressMiddlware } from "./shared/lib/helper.js";
+import app from "./shared/express/init.js";
 
-dotenv.config();
-
-const clientUrl = process.env.CLIENT_URL || "";
-
-const app = express();
-
+const clientUrl = env.CLIENT_URL || "";
 // Middleware
 app.use(cookieParser());
 app.use(compression());
@@ -78,7 +74,7 @@ initiateExpressRoutesInExpressMiddleware(app);
 const httpServer = createServer(app);
 
 // Serve static files in production
-if (process.env.NODE_ENV === "production") {
+if (env.NODE_ENV === "production") {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
 
